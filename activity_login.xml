@@ -11,7 +11,7 @@
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/material_grey_700"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -25,6 +25,11 @@
             android:visibility="gone"/>
 
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="238dp"
+        android:padding="30dp" />
 
     <EditText
         android:id="@+id/userEmail"
@@ -46,5 +51,18 @@
         android:id="@+id/btnUserLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Login"
+        android:textSize="22sp"
+        android:textColor="#ece6f2"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_rounded"/>
+    <TextView
+        android:id="@+id/textViewCreateAccount"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Forgot password? Click here"
+        android:textColor="#202020"
+        android:gravity="center_horizontal" />
 </LinearLayout>
