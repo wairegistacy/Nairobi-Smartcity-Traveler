@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         toolbar = findViewById(R.id.toolbar2);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar2);
         userEmail = findViewById(R.id.userEmail);
         userPassword = findViewById(R.id.userPassword);
         userLogin = findViewById(R.id.btnUserLogin);

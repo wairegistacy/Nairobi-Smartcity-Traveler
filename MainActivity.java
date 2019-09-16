@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     Button signup;
     Button login;
+    Button forgotPassword;
 
-    //declare instance of FirebaseAuth
+    //declare instance of FireBaseAuth
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         signup = findViewById(R.id.btnSignup);
         login = findViewById(R.id.btnLogin);
+        forgotPassword = findViewById(R.id.btnUserForgetPassword);
 
         //show title of the app inside the toolbar
         toolbar.setTitle(R.string.app_name);
@@ -84,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ForgotPasswordActivity.class));
             }
         });
     }
