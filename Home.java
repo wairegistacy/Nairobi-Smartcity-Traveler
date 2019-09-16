@@ -16,8 +16,8 @@ public class Home extends Application {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         //check the status of the user
-        //if user has not logged out, the user will be sent directly to the profile activity
-        if(firebaseUser != null){
+        //if user has not logged out and email is verified, the user will be sent directly to the profile activity
+        if(firebaseUser != null && firebaseUser.isEmailVerified()){
             startActivity( new Intent(Home.this, ProfileActivity.class));
         }
     }

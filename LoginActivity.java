@@ -52,8 +52,13 @@ public class LoginActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         //Here is where we check for the results based on the task
                         if (task.isSuccessful()){
-                            //if login is successful, one will be directed to profile activity page
-                            startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                            //check if user has verified email address
+                            if (firebaseAuth.getCurrentUser().isEmailVerified()){
+                                //if login is successful, one will be directed to profile activity page
+                                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                            }else{
+                                Toast.makeText(LoginActivity.this, "Please verify your email address", Toast.LENGTH_LONG).show();
+                            }
                         }else{
                             //if login is not successful, then the toast message from the Firebase sends to our app will be shown
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();

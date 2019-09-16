@@ -59,19 +59,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //show progressBar
                 progressBar.setVisibility(View.VISIBLE);
-                //call FireBase to save user's data
+                //register user with email and password to FireBase
                 firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     //determines whether a user has registered successfully or not
                     public void onComplete(@NonNull Task<AuthResult> task) {
                        progressBar.setVisibility(View.GONE);
-                       //if user has registered successfully, one will get a toast message showing registered successfully
+                       //if user has registered successfully, an email will be sent to current user for verification
                       if(task.isSuccessful()){
-                          Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                          //once user has successfully registered their details
-                          username.setText("");
-                          email.setText("");
-                          password.setText("");
+                          firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                              @Override
+                              public void onComplete(@NonNull Task<Void> task) {
+                                  if(task.isSuccessful()) {
+                                      Toast.makeText(MainActivity.this, "Registered successfully. Please check your email for verification", Toast.LENGTH_SHORT).show();
+                                      //once user has successfully registered their details
+                                      username.setText("");
+                                      email.setText("");
+                                      password.setText("");
+                                  } else{
+                                      Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                  }
+                              }
+                          });
+
                       }
                       //if user's data was not saved successfully in FireBase, a message will be displayed from FireBase to show it was not successful
                       else{
