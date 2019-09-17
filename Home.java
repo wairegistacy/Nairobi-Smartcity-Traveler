@@ -15,6 +15,9 @@ public class Home extends Application {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
+//        //code for setting the languages supported by FireBase
+//        firebaseAuth.setLanguageCode("fr");
+
         //check the status of the user
         //if user has not logged out and email is verified, the user will be sent directly to the profile activity
         if(firebaseUser != null && firebaseUser.isEmailVerified()){
