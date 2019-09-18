@@ -14,8 +14,8 @@ import android.widget.ProgressBar;
 public class MainActivity extends AppCompatActivity {
 
     //referencing fields of the main activity
-    Toolbar toolbar;
-    ProgressBar progressBar;
+//    Toolbar toolbar;
+//    ProgressBar progressBar;
     Button signup;
     Button login;
 
@@ -26,18 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //reference the ids of the fields in the main activity
-        toolbar = findViewById(R.id.toolbar);
-        progressBar = findViewById(R.id.progressBar);
+//        toolbar = findViewById(R.id.toolbar);
+//        progressBar = findViewById(R.id.progressBar);
         signup = findViewById(R.id.btnSignup);
         login = findViewById(R.id.btnLogin);
 
         //show title of the app inside the toolbar
-        toolbar.setTitle(R.string.app_name);
+//        toolbar.setTitle(R.string.app_name);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                startActivity(new Intent(MainActivity.this, SignupActivity.class));
             }
         });
 
