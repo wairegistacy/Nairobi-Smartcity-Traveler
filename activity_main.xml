@@ -26,29 +26,43 @@
 
     <!--</androidx.appcompat.widget.Toolbar>-->
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="70dp"/>
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:shadowColor="#424242"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
         android:text="@string/welcome"
-        android:textSize="35dp"
+        android:textAlignment="center"
+        android:textColor="@color/material_purple_A100"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/welcometext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/welcometext"
+        android:textSize="15dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
         android:shadowColor="#424242"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="2"/>
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcometext"
-        android:textSize="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:shadowColor="#424242"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"/>
+        android:padding="35dp"/>
 
     <Button
         android:id="@+id/btnSignup"
@@ -57,16 +71,16 @@
         android:text="Signup"
         android:textSize="22sp"
         android:textColor="#ece6f2"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button_rounded"/>
 
-    <Button
-        android:id="@+id/btnLogin"
+    <TextView
+        android:id="@+id/txtLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button_rounded"
-        android:text="Login"
-        android:textColor="#ece6f2"
-        android:textSize="22sp" />
+        android:layout_marginTop="10dp"
+        android:text="Already have an account? Login"
+        android:textAlignment="center"
+        android:textColor="#202020"
+        android:textSize="12sp" />
 </LinearLayout>

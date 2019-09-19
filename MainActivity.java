@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
+//import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import android.widget.ProgressBar;
+//import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -16,8 +17,10 @@ public class MainActivity extends AppCompatActivity {
     //referencing fields of the main activity
 //    Toolbar toolbar;
 //    ProgressBar progressBar;
+    TextView welcome;
+    TextView welcometext;
     Button signup;
-    Button login;
+    TextView login;
 
 
     @Override
@@ -28,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
         //reference the ids of the fields in the main activity
 //        toolbar = findViewById(R.id.toolbar);
 //        progressBar = findViewById(R.id.progressBar);
+        welcome = findViewById(R.id.welcome);
+        welcometext = findViewById(R.id.welcometext);
         signup = findViewById(R.id.btnSignup);
-        login = findViewById(R.id.btnLogin);
+        login = findViewById(R.id.txtLogin);
+
 
         //show title of the app inside the toolbar
 //        toolbar.setTitle(R.string.app_name);
