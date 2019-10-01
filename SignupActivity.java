@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +20,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+
+import java.util.List;
 import java.util.regex.Pattern;
+
+
 
 public class SignupActivity extends AppCompatActivity {
     private static final Pattern PASSWORD_PATTERN =
@@ -36,17 +43,23 @@ public class SignupActivity extends AppCompatActivity {
     //referencing fields of the main activity
     Toolbar toolbar;
     ProgressBar progressBar;
-    EditText useremail;
-    EditText userpassword;
+    EditText userName;
+    EditText userEmail;
+    EditText userPassword;
     EditText confirmPassword;
-    Button usersignup;
+    Button userSignUp;
     TextView login;
+    TextInputLayout textInputUsername;
     TextInputLayout textInputEmail;
     TextInputLayout textInputPassword;
     TextInputLayout textInputConfirmPassword;
 
     //declare instance of FireBaseAuth
     FirebaseAuth firebaseAuth;
+
+    DatabaseReference databaseReference;
+    List<Users> users;
+    public static String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +69,18 @@ public class SignupActivity extends AppCompatActivity {
         //reference the ids of the fields in the main activity
         toolbar = findViewById(R.id.toolbar4);
         progressBar = findViewById(R.id.progressBar4);
-        useremail = findViewById(R.id.email);
-        userpassword = findViewById(R.id.password);
+        userName = findViewById(R.id.username);
+        userEmail = findViewById(R.id.email);
+        userPassword = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmpassword);
-        usersignup = findViewById(R.id.btnUserSignup);
+        userSignUp = findViewById(R.id.btnUserSignup);
         login = findViewById(R.id.textViewLogin);
+        textInputUsername = findViewById(R.id.textInputUsername);
         textInputEmail = findViewById(R.id.textInputEmail);
         textInputPassword = findViewById(R.id.textInputPassword);
         textInputConfirmPassword = findViewById(R.id.textInputConfirmPassword);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         //show title of the app inside the toolbar
         toolbar.setTitle("Sign Up");
@@ -71,18 +88,21 @@ public class SignupActivity extends AppCompatActivity {
         //add this to establish a connection with FireBase
         firebaseAuth = FirebaseAuth.getInstance();
 
-        usersignup.setOnClickListener(new View.OnClickListener() {
+        userSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // show progressBar
                 progressBar.setVisibility(View.VISIBLE);
 
-                if (!validateEmail() | !validatePassword() | !validateconfirmpassword()){
+                if (!validateEmail() | !validatePassword() | !validateconfirmpassword()) {
                     return;
                 }
 
+
+
+
                 //register user with email and password to FireBase
-                firebaseAuth.createUserWithEmailAndPassword(useremail.getText().toString(), userpassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                firebaseAuth.createUserWithEmailAndPassword(userEmail.getText().toString(), userPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
@@ -93,9 +113,10 @@ public class SignupActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(SignupActivity.this, "Registered successfully. Please check your email for verification", Toast.LENGTH_SHORT).show();
-                                        //once user has successfully registered their details
-                                        useremail.setText("");
-                                        userpassword.setText("");
+                                        //once user has successfully registered their details return the fields to be empty
+                                        userEmail.setText("");
+                                        userPassword.setText("");
+                                        confirmPassword.setText("");
                                     } else {
                                         Toast.makeText(SignupActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
@@ -108,17 +129,35 @@ public class SignupActivity extends AppCompatActivity {
                         }
                     }
                 });
+                String name = userName.getText().toString();
+                String email = userEmail.getText().toString();
+                String password = userPassword.getText().toString();
+
+                //save
+                if (TextUtils.isEmpty((userId))){
+                    String id = databaseReference.push().getKey();
+                    Users user = new Users(id, name, email, password);
+                    databaseReference.child(id).setValue(user);
+
+                }
+                userName.setText(null);
+                userEmail.setText(null);
+                userPassword.setText(null);
+                confirmPassword.setText(null);
+            }
+
+
+        });
+
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
             }
         });
 
-                login.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                    }
-                });
-
-            }
+    }
 
 //showing email validation
             private boolean validateEmail() {

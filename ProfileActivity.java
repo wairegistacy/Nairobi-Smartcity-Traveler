@@ -3,6 +3,7 @@ package com.project.smartcountytraveller;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
 //reference fields of profile activity
+
+
     TextView userEmail;
     Button userLogout;
 //    Button deleteAccount;
@@ -37,6 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         //reference the ids of the fields in the profile activity
+
         userEmail = findViewById(R.id.tvUserEmail);
         userLogout = findViewById(R.id.btnLogout);
 //        deleteAccount = findViewById(R.id.btnDeleteAcc);
@@ -46,6 +50,8 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
 
         //to get the logged in user's email into the text field
+
+
         userEmail.setText(firebaseUser.getEmail());
 
 //        deleteAccount.setOnClickListener(new View.OnClickListener() {

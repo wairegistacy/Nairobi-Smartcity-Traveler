@@ -12,9 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".test"
-            android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".AddAdminActivity"
+            android:screenOrientation="portrait"/>
+        <!--<activity -->
+            <!--android:name=".ChosenInterestActivity" -->
+            <!--android:screenOrientation="portrait"/>-->
+        <!--<activity -->
+            <!--android:name=".InterestActivity" -->
+            <!--android:screenOrientation="portrait"/>-->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,11 +34,21 @@
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".SignupActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".InterestActivity"
+            android:screenOrientation="portrait"/>
+        <!--<activity-->
+            <!--android:name=".AddAdminActivity"-->
+            <!--android:screenOrientation="portrait"/>-->
+        <uses-library
+            android:name=".ChosenInterestActivity"
+            android:screenOrientation="portrait"
+            android:required="false"/>
     </application>
 
 </manifest>

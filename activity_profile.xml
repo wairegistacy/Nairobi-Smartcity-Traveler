@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".ProfileActivity">
 
+
     <ProgressBar
         android:id="@+id/progressBar5"
         style="?android:attr/progressBarStyle"

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView welcometext;
     Button signup;
     TextView login;
-
+    TextView admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         welcometext = findViewById(R.id.welcometext);
         signup = findViewById(R.id.btnSignup);
         login = findViewById(R.id.txtLogin);
+        admin =findViewById(R.id.textViewAdmin);
 
 
         //show title of the app inside the toolbar
@@ -52,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AddAdminActivity.class));
             }
         });
 
